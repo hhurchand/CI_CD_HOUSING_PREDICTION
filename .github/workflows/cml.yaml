@@ -20,5 +20,5 @@ jobs:
           REPO_TOKEN: ${{ secrets.CI_CD_BOSTON_TOKEN }}
         run: |
           pip3 install -r requirements.txt
-          python boston_CI_CD.py
+          python boston_ci_cd.py
  
