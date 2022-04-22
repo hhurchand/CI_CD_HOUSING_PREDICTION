@@ -28,6 +28,8 @@ import seaborn as sns
 ax,fig = plt.subplots(1,1,figsize=(10,10))
 sns.heatmap(df_corr,annot=True)
 
+plt.savefig("heatmap.png",dpi=120)
+
 from sklearn.preprocessing import StandardScaler
 
 sc = StandardScaler()
@@ -48,7 +50,8 @@ lr.fit(X_train,y_train)
 from sklearn.metrics  import r2_score
 coef_det = r2_score(lr.predict(X_test),y_test)
 
-print("Coefficient of determination {} %".format(round(coef_det*100,3)))
+with open("metrics.txt","w") as outfile:
+    outfile.write("Coefficient of determination {} %".format(round(coef_det*100,2)))
 
 #!pip freeze > requirements.txt
 
