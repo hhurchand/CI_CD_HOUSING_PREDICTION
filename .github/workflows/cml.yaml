@@ -21,4 +21,6 @@ jobs:
         run: |
           pip3 install -r requirements.txt
           python boston_ci_cd.py
- 
+          cat metrics.txt >> report.md
+          cml-publish heatmap.png --md >> report.md
+          cml-send-comment report.md
