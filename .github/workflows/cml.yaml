@@ -1,0 +1,26 @@
+name: train-my-model
+ 
+on: [push]
+ 
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+ 
+    steps:
+      - uses: actions/checkout@v2
+ 
+      - uses: iterative/setup-cml@v1
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+ 
+      - name: cml
+        env:
+          REPO_TOKEN: ${{ secrets.CI_CD_BOSTON_TOKEN }}
+        run: |
+          pip3 install -r requirements.txt
+          python boston_ci_cd.py
+          cat metrics.txt >> report.md
+          cml-publish heatmap.png --md >> report.md
+          cml-send-comment report.md
