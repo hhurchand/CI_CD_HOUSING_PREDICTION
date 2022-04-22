@@ -48,7 +48,7 @@ lr.fit(X_train,y_train)
 from sklearn.metrics  import r2_score
 coef_det = r2_score(lr.predict(X_test),y_test)
 
-print("Coefficient of determination {} %".format(round(coef_det*100,2)))
+print("Coefficient of determination {} %".format(round(coef_det*100,3)))
 
 #!pip freeze > requirements.txt
 
